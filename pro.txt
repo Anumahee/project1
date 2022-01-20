@@ -9,4 +9,4 @@ do
     )
 done | awk '
     { f+=$3 ; i+=$7 ; d+=$10 ; print }
-    END { print "----" ; printf("files changed: %4i - lines inserted: %6i lines deleted: %6i - %s\n", f, i, d, "Tot
+    END { print "----" ; printf("files changed: %4i - lines inserted: %6i lines deleted: %6i - %s\n", f, i, d, "Total") }'
