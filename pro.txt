@@ -1,0 +1,12 @@
+author="YourAuthorHere"
+for i in */.git
+do
+    (cd ${i%/*}
+    git log --shortstat --author $author | awk '
+        BEGIN { f=0 ; i=0 ; d=0 }
+        /files? changed/ {f+=$1; i+=$4; d+=$6}
+        END { printf("files changed: %4i - lines inserted: %6i lines deleted: %6i - %s\n", f, i, d, p) }' p=${i%/*}
+    )
+done | awk '
+    { f+=$3 ; i+=$7 ; d+=$10 ; print }
+    END { print "----" ; printf("files changed: %4i - lines inserted: %6i lines deleted: %6i - %s\n", f, i, d, "Tot
